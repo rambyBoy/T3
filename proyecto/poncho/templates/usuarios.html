@@ -1,0 +1,103 @@
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<p>{{ message }}</p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+
+<!--
+<table>
+    <thead>
+        <tr>
+            <td>Nombre</td>
+            <td>Apellidos</td>
+            <td>Usuario</td>
+            <td>Permisos</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for usuario in usuarios  %}
+        <tr>
+            <td>{{ usuario.1 }}</td>
+            <td>{{ usuario.2 }}</td>
+            <td>{{ usuario.3 }}</td>
+            <td>{{ usuario.6 }}</td>
+            <td>
+                <a href="/editar_usr/{{ usuario.0 }}">Editar</a>
+            </td>
+            <td>
+                <a href="/eliminar_usr/{{ usuario.0 }}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    
+</table>
+-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Usuarios</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/own.css')}}">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row d-flex justify-content-center my-4 usuarios">
+            <div class="col">
+                <div class="card tarjeta-usuarios">
+                    <div class="card-header d-flex justify-content-between">
+                        <h3>Usuarios</h3>
+                        <button class="btn btn-success" onclick="window.location.href='/registrar_usr'">Crear usuario</button>
+                    </div>
+
+                    <div class="card-body">
+                        <table class="table text-center">
+                            <thead>
+                                <tr>
+                                    <th>Nombre(s)</th>
+                                    <th>Apellidos</th>
+                                    <th>Usuario</th>
+                                    <th>Permisos</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for usuario in usuarios  %}
+                                <tr>
+                                    <td>{{ usuario.1 }}</td>
+                                    <td>{{ usuario.2 }}</td>
+                                    <td>{{ usuario.3 }}</td>
+                                    <td>{{ usuario.6 }}</td>
+                                    <td><a href="/editar_usr/{{ usuario.0 }}" class="opcion-tabla">Editar</a></td>
+                                    <td><a href="/eliminar_usr/{{ usuario.0 }}" class="opcion-tabla">Eliminar</a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/popper.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<p>{{ message }}</p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+
+<form action="/agregar_prod", method="POST">
+
+    <input type="text" name="nombre" placeholder="Nombre del ve">
+    <input type="text" name="marca" placeholder="Marca del ve">
+    <input type="text" name="precio" placeholder="Precio del ve">
+    <input type="text" name="year" placeholder="Ano del ve">
+    <button type="submit">
+        Registrar
+    </button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <td>Nombre</td>
+            <td>Marca</td>
+            <td>Precio</td>
+            <td>Año</td>
+            <td>Acciones</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for vehiculo in vehiculos  %}
+        <tr>
+            <td>{{ vehiculo.1 }}</td>
+            <td>{{ vehiculo.2 }}</td>
+            <td>{{ vehiculo.3 }}</td>
+            <td>{{ vehiculo.4 }}</td>
+            <td>
+                <a href="/editar/{{ vehiculo.0 }}">Editar</a>
+            </td>
+            <td>
+                <a href="/eliminar/{{ vehiculo.0 }}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    
+</table>
+
+
+<form action="/crear_tabla" method="POST">
+    <input type="text" name="query" placeholder="Tabla">
+    <button type="submit">
+        crear
+    </button>
+
+</form>
